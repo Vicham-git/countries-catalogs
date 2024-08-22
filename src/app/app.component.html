@@ -10,7 +10,13 @@
       <div class="flex justify-between space-x-4">
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Search</mat-label>
-          <input [formControl]="search" matInput/>
+          <input
+            [formControl]="search"
+            matInput
+            type="text"
+            [(ngModel)]="searchQuery"
+            (ngModelChange)="filterCountries()"
+          />
         </mat-form-field>
 
         <button mat-flat-button (click)="onSearch()">Search</button>
