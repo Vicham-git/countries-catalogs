@@ -4,89 +4,94 @@
       <mat-icon>close</mat-icon>
     </button>
   </div>
-
   <div class="p-6">
-    <span class="text-xl font-bold">{{ data.name.common }} </span>
+    <span class="text-xl font-bold">{{ data?.name?.common }} </span>
+    <img [src]="data?.flags?.png" class="w-60" />
     <div class="flex flex-col space-y-4">
-
-
       <div class="flex space-x-4">
         <div>
-          <p class="text-xl">Name</p>
+          <p class="text-xl"><strong>Name</strong></p>
           <table>
             <tr>
               <td class="font-bold text-sm">Common</td>
-              <td class="text-sm">{{ data.name.common }}</td>
+              <td class="text-sm">{{ data?.name?.common }}</td>
             </tr>
             <tr>
               <td class="font-bold text-sm">Official</td>
-              <td class="text-sm">{{ data.name.official }}</td>
+              <td class="text-sm">{{ data?.name?.official }}</td>
             </tr>
             <tr>
-              <td class="font-bold text-sm">Common (Native)</td>
-              <td class="text-sm" *ngFor="let item of data.name.nativeName | keyvalue">{{ item.value }}</td>
-            </tr>
-            <tr>
-              <td class="font-bold text-sm">Official (Native)</td>
-              <td class="text-sm">Jackson</td>
+              <td class="font-bold text-sm">Demonyms</td>
+              <td class="text-sm">{{ data?.demonyms?.eng?.f }}</td>
             </tr>
             <tr>
               <td class="font-bold text-sm">Alternative spellings</td>
-              <td class="text-sm">{{ data.altSpellings[0] }}</td>
+              <td class="text-sm">{{ data?.altSpellings?.[0] }}</td>
             </tr>
           </table>
         </div>
         <div>
-          <p class="text-xl">Language</p>
+          <p class="text-xl"><strong>Language</strong></p>
           <table>
             <tr>
               <td class="font-bold text-sm">Native language</td>
-              <td class="text-sm">{{ data.name.common }}</td>
+              <td class="text-sm">{{ data?.name?.common }}</td>
             </tr>
             <tr>
-              <td colspan="2"  class="font-bold text-sm">Languages</td>
+              <td class="font-bold text-sm">Languages</td>
+              <td class="text-sm">
+                <div *ngFor="let lang of getLanguages(data.languages)">
+                  {{ lang }}
+                </div>
+              </td>
             </tr>
             <tr>
-              <td class="font-bold text-sm">Common (Native)</td>
-              <td class="text-sm" *ngFor="let item of data.name.nativeName | keyvalue">{{ item.value }}</td>
+              <td class="font-bold text-sm">Continents</td>
+              <td class="text-sm">{{ data?.continents }}</td>
+            </tr>
+            <tr>
+              <td class="font-bold text-sm">Timezones</td>
+              <td class="text-sm">{{ data?.timezones?.[0] }}</td>
             </tr>
           </table>
-
         </div>
       </div>
-
-
       <div>
-        <p class="text-xl">Codes</p>
+        <p class="text-xl"><strong>Codes</strong></p>
         <table>
           <tr>
             <td class="font-bold text-sm">ISO 3166-1 alpha-2</td>
-            <td class="text-sm">{{ data.cca2 }}</td>
+            <td class="text-sm">{{ data?.cca2 }}</td>
           </tr>
           <tr>
             <td class="font-bold text-sm">ISO 3166-1 alpha-3</td>
-            <td class="text-sm">{{ data.cca3 }}</td>
+            <td class="text-sm">{{ data?.cca3 }}</td>
           </tr>
           <tr>
             <td class="font-bold text-sm">ISO 3166-1 numeric</td>
-            <td class="text-sm">{{ data.ccn3 }}</td>
+            <td class="text-sm">{{ data?.ccn3 }}</td>
           </tr>
           <tr>
             <td class="font-bold text-sm">International calling code</td>
-            <td class="text-sm">{{ data.idd.root.slice(1) }}{{ data.idd.suffixes }}</td>
+            <td class="text-sm">
+              {{ data?.idd?.root?.slice(1) }}{{ data?.idd?.suffixes }}
+            </td>
           </tr>
-
           <tr>
             <td class="font-bold text-sm">ISO 4217 currency code</td>
-            <td class="text-sm" *ngFor="let item of data.currencies | keyvalue">{{ item.key }}</td>
+            <td
+              class="text-sm"
+              *ngFor="let item of data?.currencies | keyvalue"
+            >
+              {{ item.key }}
+            </td>
           </tr>
           <tr>
             <td class="font-bold text-sm">Top level domain</td>
-            <td class="text-sm">{{ data.tld[0] }}</td>
+            <td class="text-sm">{{ data?.tld?.[0] }}</td>
           </tr>
         </table>
       </div>
-
     </div>
   </div>
 </div>
